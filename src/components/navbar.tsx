@@ -32,7 +32,7 @@ const DATA = {
       },
       resume: {
         name: "Resume",
-        url: "/ibrahim-cv.pdf", // ✅ Make sure the file is in /public
+        url: "/resume_ibrahim.pdf", // ✅ Make sure the file is in /public
         icon: FileTextIcon,
       },
     },
