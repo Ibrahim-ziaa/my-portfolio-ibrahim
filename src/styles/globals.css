@@ -3,229 +3,137 @@
 @tailwind utilities;
 
 @layer base {
-  .dark {
-    --main-background: 240, 6%, 3%;
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
-  }
-
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 0 0% 83.9%;
     --radius: 0.5rem;
   }
 }
 
-@layer components {
-  .prose-container {
-    @apply w-full max-w-full;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  .prose-container pre {
-    @apply w-full max-w-full overflow-x-auto;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  .prose-container code {
-    @apply whitespace-pre-wrap break-words;
-  }
+body {
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background-color: rgb(0, 112, 243);
+  background-color: #e53e3e;
   color: #ffffff;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
-
 ::-webkit-scrollbar-track {
-  background-color: var(--background);
+  background: #0a0a0a;
 }
-
 ::-webkit-scrollbar-thumb {
-  width: 5px;
-  border-radius: 5px;
-  background-color: hsl(var(--muted)) !important;
+  background: #e53e3e;
+  border-radius: 4px;
 }
 
-.card {
-  overflow: hidden;
+/* ─── Marquee ─────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.inner {
-  border-radius: 7px;
-  backdrop-filter: blur(80px);
-  transition: all 300ms ease-in-out;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
 
-.card:hover > .inner {
-  background: rgb(26, 26, 26, 0.6);
-  backdrop-filter: blur(80px);
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
-/* Loader */
-.loader {
-  --uib-size: 45px;
-  --uib-color: #000;
-  --uib-speed: 1.75s;
-  position: relative;
-  height: var(--uib-size);
-  width: var(--uib-size);
-  animation: rotate calc(var(--uib-speed) * 4) linear infinite;
+/* ─── Glow pulse ──────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 30px 10px rgba(229, 62, 62, 0.25); }
+  50%       { box-shadow: 0 0 60px 20px rgba(229, 62, 62, 0.45); }
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+.glow-red {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
-/* 404 */
-.custom-shadow {
-  box-shadow: rgba(59, 130, 246, 0.3) 5px 5px;
+/* ─── Typewriter cursor ───────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-/* Wave hand */
-.wave {
-  animation-name: wave-animation;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
 }
 
-@keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  10% {
-    transform: rotate(14deg);
-  }
-
-  20% {
-    transform: rotate(-8deg);
-  }
-
-  30% {
-    transform: rotate(14deg);
-  }
-
-  40% {
-    transform: rotate(-4deg);
-  }
-
-  50% {
-    transform: rotate(10deg);
-  }
-
-  60% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+/* ─── Badge float ─────────────────────────────────── */
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
 }
 
-/* Float animation hand */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
+.badge-float        { animation: badge-float 3s ease-in-out infinite; }
+.badge-float-delay  { animation: badge-float 3s ease-in-out 1s infinite; }
+.badge-float-delay2 { animation: badge-float 3s ease-in-out 2s infinite; }
 
-  40% {
-    transform: translateY(100px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+/* ─── Glassmorphism card ──────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s ease;
 }
 
-.float-animation {
-  animation: float 15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  /* 
-    - 8s is the duration (adjust as needed)
-    - cubic-bezier gives us the easing effect:
-      - faster going down (0.4, 0)
-      - slower coming up (0.2, 1)
-    - infinite makes it loop forever
-  */
+.glass-card:hover {
+  background: rgba(229, 62, 62, 0.05);
+  border-color: rgba(229, 62, 62, 0.3);
+  box-shadow: 0 0 30px rgba(229, 62, 62, 0.15);
 }
 
-.float2-animation {
-  animation: float2 20s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+/* ─── Stat counter box ────────────────────────────── */
+.stat-box {
+  background: rgba(229, 62, 62, 0.05);
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  transition: all 0.3s ease;
 }
 
-@keyframes float2 {
-  0% {
-    transform: translateY(0px);
-  }
+.stat-box:hover {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: rgba(229, 62, 62, 0.4);
+  box-shadow: 0 0 20px rgba(229, 62, 62, 0.2);
+}
 
-  40% {
-    transform: translateY(-100px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+/* ─── Particle canvas (hero background) ──────────────── */
+@keyframes particle-rise {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
 }
