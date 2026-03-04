@@ -53,12 +53,8 @@ function Particles() {
     canvas.height = canvas.offsetHeight;
 
     const particles: {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      alpha: number;
+      x: number; y: number; size: number;
+      speedX: number; speedY: number; alpha: number;
     }[] = [];
 
     for (let i = 0; i < 80; i++) {
@@ -82,33 +78,18 @@ function Particles() {
         ctx.fill();
         p.x += p.speedX;
         p.y += p.speedY;
-        if (p.y < -5) {
-          p.y = canvas.height + 5;
-          p.x = Math.random() * canvas.width;
-        }
+        if (p.y < -5) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; }
       });
       animId = requestAnimationFrame(draw);
     };
     draw();
 
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
+    const handleResize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", handleResize); };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-    />
-  );
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />;
 }
 
 const badges = [
@@ -123,89 +104,61 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-[#0a0a0a] overflow-hidden">
       <Particles />
-
-      {/* Subtle red radial glow background */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#e53e3e]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-24 pb-16 lg:pt-32 lg:pb-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
           {/* LEFT */}
           <div>
-            {/* Hello, I'm */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-[#e53e3e] text-sm font-bold tracking-[0.3em] uppercase mb-4"
             >
               HELLO, I&apos;M
             </motion.p>
 
-            {/* Name */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-none tracking-tight text-white mb-6"
             >
-              IBRAHIM
-              <br />
-              ZIA
-              <br />
-              KHAN
+              IBRAHIM<br />ZIA<br />KHAN
             </motion.h1>
 
-            {/* Typewriter */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
               className="text-xl lg:text-2xl text-white/60 font-medium mb-8 h-8 flex items-center"
             >
               <span>{typed}</span>
               <span className="cursor-blink ml-0.5 text-[#e53e3e]">|</span>
             </motion.div>
 
-            {/* Badges */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
               className="flex flex-wrap gap-3 mb-10"
             >
               {badges.map((b) => (
-                <span
-                  key={b.text}
-                  className={`${b.cls} px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/80 backdrop-blur-sm`}
-                >
+                <span key={b.text} className={`${b.cls} px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/80 backdrop-blur-sm`}>
                   {b.text}
                 </span>
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
               className="flex flex-wrap gap-4"
             >
               <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                href="https://www.upwork.com/freelancers/ibrahimzia"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3.5 bg-[#e53e3e] text-white font-bold text-sm tracking-widest uppercase rounded-full hover:bg-[#c53030] transition-all duration-200 hover:shadow-lg hover:shadow-red-500/30"
               >
                 Hire Me
               </a>
               <a
                 href="#work"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={(e) => { e.preventDefault(); document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" }); }}
                 className="px-8 py-3.5 border border-white/30 text-white font-bold text-sm tracking-widest uppercase rounded-full hover:border-white hover:bg-white/5 transition-all duration-200"
               >
                 See My Work
@@ -215,24 +168,19 @@ export default function Hero() {
 
           {/* RIGHT — Photo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Glow ring */}
               <div className="absolute inset-0 rounded-2xl glow-red z-0" />
-              {/* Image */}
               <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 w-72 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[500px]">
                 <Image
-                  src="/images/ibrahim.jpeg"
+                  src="/images/Ibrahim-NebulaAi-PFP.png"
                   alt="Ibrahim Zia Khan"
                   fill
-                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover object-top"
                   priority
                 />
-                {/* Red overlay tint */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#e53e3e]/20 via-transparent to-transparent" />
               </div>
             </div>
@@ -240,11 +188,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-white/30 text-xs tracking-widest uppercase">Scroll</span>

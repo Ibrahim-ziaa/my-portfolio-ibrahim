@@ -1,51 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Bot,
-  GitMerge,
-  MessageSquare,
-  BarChart2,
-  Filter,
-  Phone,
-} from "lucide-react";
+import { Bot, MessageSquare, TrendingUp, BarChart2, Database, Phone } from "lucide-react";
 
 const services = [
   {
     icon: Bot,
     title: "AI Automation",
-    description:
-      "End-to-end automation pipelines powered by LLMs. Eliminate repetitive tasks and scale operations intelligently.",
-  },
-  {
-    icon: GitMerge,
-    title: "n8n & Make Workflows",
-    description:
-      "Complex multi-step workflows connecting your entire tool stack — no-code and low-code, built to last.",
+    description: "n8n, Make, Zapier workflows that run your business on autopilot — from lead intake to delivery, fully automated.",
   },
   {
     icon: MessageSquare,
-    title: "RAG Chatbots & AI Agents",
-    description:
-      "Context-aware AI agents and retrieval-augmented chatbots trained on your proprietary data.",
+    title: "AI Agents & Chatbots",
+    description: "GPT/Claude-powered RAG chatbots, voice agents via Retell & Vapi — intelligent assistants that actually close deals.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Sales & Marketing Automation",
+    description: "Lead intake, qualification, follow-up sequences, and appointment booking — your entire sales funnel on autopilot.",
   },
   {
     icon: BarChart2,
     title: "Data Science & ML",
-    description:
-      "Predictive models, data pipelines, and ML systems that turn raw data into competitive advantage.",
+    description: "Predictive models, NLP pipelines, and interactive dashboards with Power BI & Looker Studio — data that drives decisions.",
   },
   {
-    icon: Filter,
-    title: "GHL Automation",
-    description:
-      "GoHighLevel CRM automation — funnels, follow-up sequences, and lead management at scale.",
+    icon: Database,
+    title: "CRM Automation",
+    description: "HubSpot, GHL, Salesforce, Zoho — automatic pipeline updates, lead enrichment, and contact scoring at scale.",
   },
   {
     icon: Phone,
-    title: "WhatsApp & Twilio Integration",
-    description:
-      "Conversational AI over WhatsApp, SMS, and voice — fully automated customer touchpoints.",
+    title: "Voice & Communication",
+    description: "Twilio, WhatsApp, SMS automation, and ElevenLabs voice integration — omnichannel communication on autopilot.",
   },
 ];
 
@@ -60,7 +47,6 @@ export default function Services() {
   return (
     <section id="services" className="py-24 lg:py-32 bg-[#080808]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
         <motion.div {...fadeUp(0)} className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-black mb-4">
             What I <span className="text-[#e53e3e]">Do</span>
@@ -72,7 +58,6 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <motion.div
